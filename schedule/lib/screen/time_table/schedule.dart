@@ -1,9 +1,8 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:schedule/component/app_colors.dart';
 import 'package:schedule/component/schedule_item.dart';
-
-
+import 'package:schedule/screen/navigation_menu/navigation_menu.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -99,17 +98,23 @@ class _HomePageView extends State<HomePageView> {
                 child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 7,
-                    itemBuilder: (context, index) =>  Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Container(
-                        ///TODO
-                        width: 120,
-                      ),
-                    )),
+                    itemBuilder: (context, index) => Padding(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Container(
+                            ///TODO
+                            width: 120,
+                          ),
+                        )),
               ),
-              const ScheduleItem(text: "23/02", subject: "Lập trình hướng đối tượng", teacher: "Đào Ngọc Phong", room: "302-A2", fontSize: 16)
+              const ScheduleItem(
+                  text: "23/02",
+                  subject: "Lập trình hướng đối tượng",
+                  teacher: "Đào Ngọc Phong",
+                  room: "302-A2",
+                  fontSize: 16)
             ]),
           ),
-        ));
+        ),
+        bottomNavigationBar: NavigationMenu());
   }
 }

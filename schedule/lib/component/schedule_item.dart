@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:schedule/component/app_colors.dart';
 
 class ScheduleItem extends StatelessWidget {
   final String text;
@@ -23,9 +24,10 @@ class ScheduleItem extends StatelessWidget {
       child: Container(
         height: 80,
         decoration: BoxDecoration(
+          color: AppColor.bluePrimaryColor3,
           border: Border.all(
-            color: Colors.grey.withOpacity(0.6),
-            width: 1,
+            color: AppColor.bluePrimaryColor2,
+            width: 2,
           ),
           borderRadius: BorderRadius.circular(16),
         ),
@@ -37,16 +39,16 @@ class ScheduleItem extends StatelessWidget {
                 text,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize:fontSize.toDouble(),
+                  fontSize: fontSize.toDouble(),
                   fontWeight: FontWeight.w700,
-                  color:  Color(0xFF2C5BF2),
+                  color: AppColor.bluePrimaryColor1,
                 ),
               ),
             ),
             const VerticalDivider(
-              color: Colors.black,
-              width: 1,
-              thickness: 0.1,
+              color: AppColor.bluePrimaryColor2,
+              width: 2,
+              thickness: 2,
             ),
             Expanded(
               flex: 3,
@@ -57,14 +59,24 @@ class ScheduleItem extends StatelessWidget {
                   children: [
                     Text(
                       subject,
-                      style: TextStyle(
-                        fontSize: 18,
+                      style: const TextStyle(
+                        fontSize: 15,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    const SizedBox(height: 3),
-                    Text("Giảng viên: ${(teacher)}"),
-                    Text("Phòng học: ${(room)}"),
+                    const SizedBox(height: 2),
+                    Text(
+                      "Giảng viên: ${(teacher)}",
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: AppColor.bluePrimaryColor2
+                      ),
+                    ),
+                    Text("Phòng học: ${(room)}",
+                      style: const TextStyle(
+                          fontSize: 13,
+                          color: AppColor.bluePrimaryColor2
+                      ),),
                   ],
                 ),
               ),
