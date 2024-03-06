@@ -20,7 +20,7 @@ class _TimeTableState extends State<TimeTable> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 10.0, left: 10, right: 10),
+            padding: const EdgeInsets.all(10),
             child: Row(
               children: [
                 const Text(
@@ -56,6 +56,28 @@ class _TimeTableState extends State<TimeTable> {
               ],
             ),
           ),
+          const ScheduleItem(
+            text: "15/03",
+            subject: "Lap Trinh HDT",
+            teacher: "Nguyen Hoang Anh",
+            room: "203-A3",
+            fontSize: 15,
+            timeIn: '08:00',
+            timeOut: '10:00',
+            isNow: true,
+          ),
+          const Padding(
+            padding: EdgeInsets.only(bottom: 10, left: 10),
+            child: SizedBox(
+              width: double.infinity,
+              child: Text(
+                "Lịch học trong ngày:",
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: AppColor.bluePrimaryColor1),
+                  textAlign: TextAlign.left),
+            ),
+          ),
           ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             scrollDirection: Axis.vertical,
@@ -69,6 +91,7 @@ class _TimeTableState extends State<TimeTable> {
               fontSize: 15,
               timeIn: '08:00',
               timeOut: '10:00',
+              isNow: false,
             ),
           )
         ],

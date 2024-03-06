@@ -25,51 +25,50 @@ class _HomePageView extends State<HomePageView> {
   // late final HomeBloc _bloc;
   // ScrollController _scrollController = ScrollController();
 
+  late int _layoutSelected;
+
   @override
   void initState() {
     // _bloc = context.read<HomeBloc>()..add(InitialHomeEvent());
     // _scrollController = ScrollController();
     // _scrollController.addListener(_scrollListener);
+    _layoutSelected = 0;
     super.initState();
   }
 
-  // _scrollListener() {
-  //   if (_scrollController.offset >=
-  //       _scrollController.position.maxScrollExtent - 500 &&
-  //       !_scrollController.position.outOfRange) {
-  //     if (!_bloc.state.isLoading) {
-  //       _bloc.add(LoadMoreDataEvent(_bloc.state.page + 1));
-  //     }
-  //   }
-  //   if (_scrollController.offset < -100) {
-  //     if (!_bloc.state.isLoading) {
-  //       _bloc.add(RefreshDataEvent(_bloc.state.page));
-  //     }
-  //   }
-  // }
-
-  // void _loadMoreData() async {
-  //   if (!_isLoading) {
-  //     setState(() {
-  //       _isLoading = true;
-  //     });
-  //     await Future.delayed(Duration(seconds: 1));
-  //     List<int> newContainerList = List.generate(10, (index) => index);
-  //
-  //     setState(() {
-  //       _containerList.addAll(newContainerList);
-  //       _isLoading = false;
-  //     });
-  //   }
-  // }
+  void toggleSelected(int index) {
+    setState(() {
+      _layoutSelected = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
-          child: Schedule(),
+          child: const [
+            Schedule(),
+            Card(
+              margin: const EdgeInsets.all(16.0),
+              child: Center(child: Text('Hoat Dong')),
+            ),
+            Card(
+              margin: const EdgeInsets.all(16.0),
+              child: Center(child: Text('Bao Thuc')),
+            ),
+            Card(
+              margin: const EdgeInsets.all(16.0),
+              child: Center(child: Text('Thong Ke')),
+            ),
+            Card(
+              margin: const EdgeInsets.all(16.0),
+              child: Center(child: Text('Nhiem Vu')),
+            )
+          ][_layoutSelected],
         ),
-        bottomNavigationBar: NavigationMenu());
+        bottomNavigationBar: NavigationMenu(
+          onPressed: toggleSelected,
+        ));
   }
 }

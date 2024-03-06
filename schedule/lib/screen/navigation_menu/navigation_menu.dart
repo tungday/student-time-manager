@@ -3,6 +3,9 @@ import "package:flutter_svg/flutter_svg.dart";
 import "package:schedule/component/app_colors.dart";
 
 class NavigationMenu extends StatefulWidget {
+  final Function onPressed;
+  NavigationMenu({required this.onPressed});
+
   @override
   State<NavigationMenu> createState() => _NavigationMenuState();
 }
@@ -11,11 +14,15 @@ class _NavigationMenuState extends State<NavigationMenu> {
   // const NavigationMenu({Key? key,}) : super(key: key);
   int _selectedIndex = 0;
 
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      widget.onPressed(index);
     });
   }
+
+
 
   @override
   Widget build(BuildContext context) {

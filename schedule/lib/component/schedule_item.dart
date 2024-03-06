@@ -9,6 +9,7 @@ class ScheduleItem extends StatelessWidget {
   final int fontSize;
   final String timeIn;
   final String timeOut;
+  final bool isNow;
 
   const ScheduleItem(
       {Key? key,
@@ -18,21 +19,22 @@ class ScheduleItem extends StatelessWidget {
       required this.room,
       required this.fontSize,
       required this.timeIn,
-      required this.timeOut})
+      required this.timeOut,
+      required this.isNow})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.only(left: 10, bottom: 10, right: 10),
       child: Container(
         height: 80,
         decoration: BoxDecoration(
           color: AppColor.bluePrimaryColor3,
-          border: Border.all(
+          border: isNow ? Border.all(
             color: AppColor.bluePrimaryColor2,
             width: 2,
-          ),
+          ) : null,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
