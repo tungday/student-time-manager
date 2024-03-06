@@ -1,120 +1,100 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:schedule/component/app_colors.dart';
-import 'package:schedule/component/schedule_item.dart';
-import 'package:schedule/screen/navigation_menu/navigation_menu.dart';
+import "package:flutter/material.dart";
+import "package:flutter_svg/flutter_svg.dart";
+import "package:schedule/component/app_colors.dart";
+import "package:schedule/component/schedule_item.dart";
+import "package:schedule/screen/time_table/time_table.dart";
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const HomePageView();
-  }
-}
-
-class HomePageView extends StatefulWidget {
-  const HomePageView({Key? key}) : super(key: key);
+class Schedule extends StatefulWidget {
+  const Schedule({Key? key}) : super(key: key);
 
   @override
-  State<HomePageView> createState() => _HomePageView();
+  State<Schedule> createState() => _ScheduleState();
 }
 
-class _HomePageView extends State<HomePageView> {
-  // late final HomeBloc _bloc;
-  // ScrollController _scrollController = ScrollController();
+class _ScheduleState extends State<Schedule> with TickerProviderStateMixin {
+  late final TabController _tabController;
 
   @override
   void initState() {
-    // _bloc = context.read<HomeBloc>()..add(InitialHomeEvent());
-    // _scrollController = ScrollController();
-    // _scrollController.addListener(_scrollListener);
+    _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
-  // _scrollListener() {
-  //   if (_scrollController.offset >=
-  //       _scrollController.position.maxScrollExtent - 500 &&
-  //       !_scrollController.position.outOfRange) {
-  //     if (!_bloc.state.isLoading) {
-  //       _bloc.add(LoadMoreDataEvent(_bloc.state.page + 1));
-  //     }
-  //   }
-  //   if (_scrollController.offset < -100) {
-  //     if (!_bloc.state.isLoading) {
-  //       _bloc.add(RefreshDataEvent(_bloc.state.page));
-  //     }
-  //   }
-  // }
-
-  // void _loadMoreData() async {
-  //   if (!_isLoading) {
-  //     setState(() {
-  //       _isLoading = true;
-  //     });
-  //     await Future.delayed(Duration(seconds: 1));
-  //     List<int> newContainerList = List.generate(10, (index) => index);
-  //
-  //     setState(() {
-  //       _containerList.addAll(newContainerList);
-  //       _isLoading = false;
-  //     });
-  //   }
-  // }
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: const Text("Tin tức"),
-          // leading: IconButton(
-          //   icon: const Icon(Icons.close),
-          //   onPressed: () {
-          //     Navigator.of(context);
-          //   },
-          //   color: Colors.black,
-          // ),
-          backgroundColor: Colors.white,
-          elevation: 0,
-          // actions: [
-          //   IconButton(
-          //       onPressed: () async {
-          //         await FirebaseAuth.instance.signOut();
-          //         Navigator.popUntil(context, ModalRoute.withName('/'));
-          //
-          //       },
-          //       icon: const Icon(Icons.logout, color: Colors.black))
-          // ],
-        ),
-        body: Container(
-          height: double.infinity,
-          child: SingleChildScrollView(
-            // controller: _scrollController,
-            child: Column(children: [
-              Container(
-                height: 60,
-                alignment: Alignment.center,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 7,
-                    itemBuilder: (context, index) => Padding(
-                          padding: EdgeInsets.only(left: 10),
-                          child: Container(
-                            ///TODO
-                            width: 120,
-                          ),
-                        )),
+    return Container(
+        height: double.infinity,
+        child: Column(
+          children: [
+            Container(
+              height: 60,
+              color: AppColor.bluePrimaryColor1,
+              child: Row(
+                children: [
+                  const Padding(padding: EdgeInsets.only(left: 5)),
+                  IconButton(
+                      onPressed: () => {},
+                      icon: SvgPicture.asset(
+                        "assets/user_ic.svg",
+                        width: 35,
+                        height: 35,
+                        colorFilter: const ColorFilter.mode(
+                            Colors.white, BlendMode.srcIn),
+                      )),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Xin Chào",
+                        style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
+                      ),
+                      Text("NGUYEN PHUONG NAM".toUpperCase(),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 13, height: 1, fontWeight: FontWeight.w600))
+                    ],
+                  )
+                ],
               ),
-              const ScheduleItem(
-                  text: "23/02",
-                  subject: "Lập trình hướng đối tượng",
-                  teacher: "Đào Ngọc Phong",
-                  room: "302-A2",
-                  fontSize: 16)
-            ]),
-          ),
-        ),
-        bottomNavigationBar: NavigationMenu());
+            ),
+            Container(
+              color: AppColor.bluePrimaryColor1,
+              margin: const EdgeInsets.only(top: 1),
+              height: 30,
+              child: TabBar.secondary(
+                  controller: _tabController,
+                  unselectedLabelColor: Colors.white,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  labelStyle: const TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w600),
+                  indicator:
+                      const BoxDecoration(color: AppColor.bluePrimaryColor2),
+                  indicatorColor: AppColor.yellowColor,
+                  tabs: const [
+                    Tab(
+                      child: Text("Thời khóa biểu"),
+                    ),
+                    Tab(
+                      child: Text("Sự kiện học tập"),
+                    )
+                  ]),
+            ),
+            Expanded(
+              child: TabBarView(controller: _tabController, children: const [
+                TimeTable(),
+                Card(
+                  margin: const EdgeInsets.all(16.0),
+                  child: Center(child: Text('SU KIEN HOC TAP')),
+                ),
+              ]),
+            )
+          ],
+        ));
   }
 }

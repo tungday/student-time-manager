@@ -7,15 +7,19 @@ class ScheduleItem extends StatelessWidget {
   final String teacher;
   final String room;
   final int fontSize;
+  final String timeIn;
+  final String timeOut;
 
-  const ScheduleItem({
-    Key? key,
-    required this.text,
-    required this.subject,
-    required this.teacher,
-    required this.room,
-    required this.fontSize,
-  }) : super(key: key);
+  const ScheduleItem(
+      {Key? key,
+      required this.text,
+      required this.subject,
+      required this.teacher,
+      required this.room,
+      required this.fontSize,
+      required this.timeIn,
+      required this.timeOut})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,17 +38,40 @@ class ScheduleItem extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              flex: 1,
-              child: Text(
-                text,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: fontSize.toDouble(),
-                  fontWeight: FontWeight.w700,
-                  color: AppColor.bluePrimaryColor1,
-                ),
-              ),
-            ),
+                flex: 1,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        text,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: fontSize.toDouble() + 2,
+                          fontWeight: FontWeight.w700,
+                          color: AppColor.bluePrimaryColor1,
+                        ),
+                      ),
+                      Text(
+                        timeIn,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            height: 1,
+                            fontSize: 13,
+                            color: AppColor.bluePrimaryColor2),
+                      ),
+                      Text(
+                        timeOut,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            height: 1,
+                            fontSize: 13,
+                            color: AppColor.bluePrimaryColor2),
+                      ),
+                    ],
+                  ),
+                )),
             const VerticalDivider(
               color: AppColor.bluePrimaryColor2,
               width: 2,
@@ -68,15 +95,13 @@ class ScheduleItem extends StatelessWidget {
                     Text(
                       "Giảng viên: ${(teacher)}",
                       style: const TextStyle(
-                        fontSize: 13,
-                        color: AppColor.bluePrimaryColor2
-                      ),
+                          fontSize: 13, color: AppColor.bluePrimaryColor2),
                     ),
-                    Text("Phòng học: ${(room)}",
+                    Text(
+                      "Phòng học: ${(room)}",
                       style: const TextStyle(
-                          fontSize: 13,
-                          color: AppColor.bluePrimaryColor2
-                      ),),
+                          fontSize: 13, color: AppColor.bluePrimaryColor2),
+                    ),
                   ],
                 ),
               ),

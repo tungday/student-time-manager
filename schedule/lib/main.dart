@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:schedule/screen/time_table/schedule.dart';
+import 'package:schedule/screen/time_table/home_page.dart';
+import 'package:flutter/services.dart';
 
 void main() async {
   runApp(const MyApp());
