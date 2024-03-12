@@ -2,21 +2,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:schedule/component/app_colors.dart';
 import 'package:schedule/component/schedule_item.dart';
+import 'package:schedule/screen/drawer_nav/main_drawer.dart';
 import 'package:schedule/screen/navigation_menu/navigation_menu.dart';
 import 'package:schedule/screen/time_table/schedule.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+
+  HomePage({required this.callback});
+
+  final VoidCallback callback;
 
   @override
   Widget build(BuildContext context) {
-    return const HomePageView();
+    return HomePageView(callback: this.callback,);
   }
 }
 
 class HomePageView extends StatefulWidget {
-  const HomePageView({Key? key}) : super(key: key);
+  // const HomePageView({Key? key}) : super(key: key);
+  HomePageView({required this.callback});
 
+  final VoidCallback callback;
   @override
   State<HomePageView> createState() => _HomePageView();
 }
@@ -46,6 +52,17 @@ class _HomePageView extends State<HomePageView> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
+        drawer: SafeArea(
+          child:  Container(
+            width: 250,
+            child: Drawer(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.zero,
+              ),
+              child: MainDrawer(callback: widget.callback,),
+            ),
+          ),
+        ),
         body: SafeArea(
           child: const [
             Schedule(),

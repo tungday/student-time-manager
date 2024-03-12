@@ -1,0 +1,19 @@
+{
+    "hello": "Xin Chào",
+    "timeTable": "Lịch học",
+    "studyEvent": "Sự kiện học tập",
+    "currentClassSchedule": "Lịch học hiện tại",
+    "scheduleManage": "Quản lý lịch",
+    "todayClassSchedule": "Lịch học hôm nay",
+    "teacher": "Giảng viên",
+    "classroom": "Phòng học",
+    "activity": "Hoạt động",
+    "alarm": "Báo thức",
+    "statistic": "Thống kê",
+    "assignment": "Nhiệm vụ",
+    "settingAccount": "Cài đặt tài khoản",
+    "languages": "Ngôn ngữ",
+    "vietnamLanguage" : "Tiếng Việt",
+    "englishLanguage" : "Tiếng Anh",
+    "logout": "Đăng xuất"
+}

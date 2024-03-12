@@ -1,5 +1,6 @@
 import 'dart:ui';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schedule/component/app_colors.dart';
@@ -23,34 +24,39 @@ class _TimeTableState extends State<TimeTable> {
             padding: const EdgeInsets.all(10),
             child: Row(
               children: [
-                const Text(
-                  "Lịch học hiện tại:",
-                  style: TextStyle(
+                Text(
+                  "${AppLocalizations.of(context)!.currentClassSchedule}:",
+                  style: const TextStyle(
                       fontWeight: FontWeight.w600,
                       color: AppColor.bluePrimaryColor1),
                 ),
                 Spacer(),
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      WidgetSpan(
-                        child: Padding(
-                            padding: EdgeInsets.only(right: 4),
-                            child: SvgPicture.asset(
-                              'assets/setting_ic.svg',
-                              width: 12,
-                              height: 12,
-                            ) // Icon
-                            ),
-                      ),
-                      const TextSpan(
-                        text: 'Quản lý lịch', // Text
-                        style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            color: AppColor.bluePrimaryColor1,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ],
+                GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context, '/schedule_manage');
+                  },
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        WidgetSpan(
+                          child: Padding(
+                              padding: EdgeInsets.only(right: 4),
+                              child: SvgPicture.asset(
+                                'assets/setting_ic.svg',
+                                width: 12,
+                                height: 12,
+                              ) // Icon
+                              ),
+                        ),
+                        TextSpan(
+                          text: AppLocalizations.of(context)!.scheduleManage, // Text
+                          style: const TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: AppColor.bluePrimaryColor1,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -66,13 +72,13 @@ class _TimeTableState extends State<TimeTable> {
             timeOut: '10:00',
             isNow: true,
           ),
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(bottom: 10, left: 10),
             child: SizedBox(
               width: double.infinity,
               child: Text(
-                "Lịch học trong ngày:",
-                style: TextStyle(
+                  "${AppLocalizations.of(context)!.todayClassSchedule}:",
+                style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     color: AppColor.bluePrimaryColor1),
                   textAlign: TextAlign.left),

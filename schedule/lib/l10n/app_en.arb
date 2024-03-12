@@ -1,0 +1,19 @@
+{
+    "hello": "Welcome",
+    "timeTable": "Time table",
+    "studyEvent": "Study event",
+    "currentClassSchedule": "Current class schedule",
+    "scheduleManage": "Schedule manage",
+    "todayClassSchedule": "Today's class schedule",
+    "teacher": "Teacher",
+    "classroom": "Class room",
+    "activity": "Activity",
+    "alarm": "Alarm",
+    "statistic": "Statistic",
+    "assignment": "Assignment",
+    "settingAccount": "Setting account",
+    "languages": "Languages",
+    "vietnamLanguage" : "Vietnamese",
+    "englishLanguage" : "English",
+    "logout": "Logout"
+}

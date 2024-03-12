@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";
 import "package:schedule/component/app_colors.dart";
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NavigationMenu extends StatefulWidget {
   final Function onPressed;
@@ -41,7 +42,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
         items: [
           BottomNavigationBarItem(
             backgroundColor: AppColor.bluePrimaryColor2,
-            label: "Lịch học",
+            label: AppLocalizations.of(context)!.timeTable,
             icon: SvgPicture.asset("assets/calendar_ic.svg",
                 width: 25,
                 height: 25,
@@ -52,7 +53,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
                     BlendMode.srcIn)),
           ),
           BottomNavigationBarItem(
-            label: "Hoạt động",
+            label: AppLocalizations.of(context)!.activity,
             icon: SvgPicture.asset("assets/timeline_ic.svg",
                 width: 25,
                 height: 25,
@@ -63,7 +64,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
                     BlendMode.srcIn)),
           ),
           BottomNavigationBarItem(
-            label: "Báo thức",
+            label: AppLocalizations.of(context)!.alarm,
             icon: SvgPicture.asset("assets/clock_ic.svg",
                 width: 25,
                 height: 25,
@@ -74,7 +75,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
                     BlendMode.srcIn)),
           ),
           BottomNavigationBarItem(
-            label: "Thống kê",
+            label: AppLocalizations.of(context)!.statistic,
             icon: SvgPicture.asset("assets/chart_ic.svg",
                 width: 25,
                 height: 25,
@@ -85,7 +86,7 @@ class _NavigationMenuState extends State<NavigationMenu> {
                     BlendMode.srcIn)),
           ),
           BottomNavigationBarItem(
-            label: "Nhiệm vụ",
+            label: AppLocalizations.of(context)!.assignment,
             icon: SvgPicture.asset("assets/assigment_ic.svg",
                 width: 25,
                 height: 25,

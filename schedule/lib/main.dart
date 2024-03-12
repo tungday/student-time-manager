@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:schedule/component/app_colors.dart';
 import 'package:schedule/screen/time_table/home_page.dart';
-import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:schedule/screen/time_table/time_tables_manage.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -8,6 +11,10 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  void changeLanguage(){
+
+  }
 
   // This widget is the root of your application.
   @override
@@ -18,7 +25,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: Locale('vi', ''),
+      home: HomePage(callback: changeLanguage,),
+      routes: {
+        '/schedule_manage': (context) => TimeTableManage()
+      },
     );
   }
 }

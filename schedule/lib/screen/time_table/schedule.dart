@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";
 import "package:schedule/component/app_colors.dart";
-import "package:schedule/component/schedule_item.dart";
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import "package:schedule/screen/time_table/time_table.dart";
 
 class Schedule extends StatefulWidget {
@@ -51,13 +51,19 @@ class _ScheduleState extends State<Schedule> with TickerProviderStateMixin {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        "Xin Chào",
-                        style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w600),
+                      Text(
+                        AppLocalizations.of(context)!.hello,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 13,
+                            fontWeight: FontWeight.w600),
                       ),
                       Text("NGUYEN PHUONG NAM".toUpperCase(),
                           style: const TextStyle(
-                              color: Colors.white, fontSize: 13, height: 1, fontWeight: FontWeight.w600))
+                              color: Colors.white,
+                              fontSize: 13,
+                              height: 1,
+                              fontWeight: FontWeight.w600))
                     ],
                   )
                 ],
@@ -76,12 +82,12 @@ class _ScheduleState extends State<Schedule> with TickerProviderStateMixin {
                   indicator:
                       const BoxDecoration(color: AppColor.bluePrimaryColor2),
                   indicatorColor: AppColor.yellowColor,
-                  tabs: const [
+                  tabs: [
                     Tab(
-                      child: Text("Thời khóa biểu"),
+                      child: Text(AppLocalizations.of(context)!.timeTable),
                     ),
                     Tab(
-                      child: Text("Sự kiện học tập"),
+                      child: Text(AppLocalizations.of(context)!.studyEvent),
                     )
                   ]),
             ),

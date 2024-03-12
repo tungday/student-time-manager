@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:schedule/component/app_colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class ScheduleItem extends StatelessWidget {
   final String text;
@@ -95,12 +97,12 @@ class ScheduleItem extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      "Giảng viên: ${(teacher)}",
+                      "${AppLocalizations.of(context)!.teacher}: ${(teacher)}",
                       style: const TextStyle(
                           fontSize: 13, color: AppColor.bluePrimaryColor2),
                     ),
                     Text(
-                      "Phòng học: ${(room)}",
+                      "${AppLocalizations.of(context)!.classroom}: ${(room)}",
                       style: const TextStyle(
                           fontSize: 13, color: AppColor.bluePrimaryColor2),
                     ),
