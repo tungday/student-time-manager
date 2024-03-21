@@ -4,6 +4,7 @@ import 'package:schedule/component/app_colors.dart';
 import 'package:schedule/component/schedule_item.dart';
 import 'package:schedule/screen/drawer_nav/main_drawer.dart';
 import 'package:schedule/screen/navigation_menu/navigation_menu.dart';
+import 'package:schedule/screen/task_manage/task_home.dart';
 import 'package:schedule/screen/time_table/schedule.dart';
 
 class HomePage extends StatelessWidget {
@@ -78,10 +79,7 @@ class _HomePageView extends State<HomePageView> {
               margin: const EdgeInsets.all(16.0),
               child: Center(child: Text('Thong Ke')),
             ),
-            Card(
-              margin: const EdgeInsets.all(16.0),
-              child: Center(child: Text('Nhiem Vu')),
-            )
+            TaskHome()
           ][_layoutSelected],
         ),
         bottomNavigationBar: NavigationMenu(

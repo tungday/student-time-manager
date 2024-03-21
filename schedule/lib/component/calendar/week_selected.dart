@@ -7,7 +7,12 @@ import 'package:schedule/component/app_colors.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class WeekSelected extends StatefulWidget {
-  const WeekSelected({Key? key}) : super(key: key);
+  final Function(DateTime)? func; // setState cho ngày đang chọn để thay đổi d/s công việc tại trang Quản lý công vệc
+
+  const WeekSelected({
+    Key? key,
+    this.func
+  }) : super(key: key);
 
   @override
   State<WeekSelected> createState() => _WeekSelectedState();
@@ -16,6 +21,13 @@ class WeekSelected extends StatefulWidget {
 class _WeekSelectedState extends State<WeekSelected> {
   DateTime _selectedDay = DateTime.now();
   CalendarFormat _calendarFormat = CalendarFormat.week;
+  late final Function(DateTime) _func;
+
+  @override
+  void initState() {
+    _func = widget.func ?? (date){};
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +41,7 @@ class _WeekSelectedState extends State<WeekSelected> {
           return isSameDay(_selectedDay, day);
         },
         onDaySelected: (selectedDay, focusedDay) {
+          _func(selectedDay);
           setState(() {
             _selectedDay = selectedDay;
             _calendarFormat = CalendarFormat.week;
