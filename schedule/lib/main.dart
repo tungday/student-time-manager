@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schedule/component/app_colors.dart';
+import 'package:schedule/screen/task_manage/task_manage.dart';
 import 'package:schedule/screen/time_table/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -30,7 +31,8 @@ class MyApp extends StatelessWidget {
       locale: Locale('vi', ''),
       home: HomePage(callback: changeLanguage,),
       routes: {
-        '/schedule_manage': (context) => TimeTableManage()
+        '/schedule_manage': (context) => TimeTableManage(),
+        '/task_manage': (context) => const TaskManage()
       },
     );
   }
