@@ -8,14 +8,15 @@ import 'package:schedule/screen/task_manage/task_home.dart';
 import 'package:schedule/screen/time_table/schedule.dart';
 
 class HomePage extends StatelessWidget {
-
   HomePage({required this.callback});
 
   final VoidCallback callback;
 
   @override
   Widget build(BuildContext context) {
-    return HomePageView(callback: this.callback,);
+    return HomePageView(
+      callback: this.callback,
+    );
   }
 }
 
@@ -24,6 +25,7 @@ class HomePageView extends StatefulWidget {
   HomePageView({required this.callback});
 
   final VoidCallback callback;
+
   @override
   State<HomePageView> createState() => _HomePageView();
 }
@@ -33,6 +35,7 @@ class _HomePageView extends State<HomePageView> {
   // ScrollController _scrollController = ScrollController();
 
   late int _layoutSelected;
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -52,31 +55,36 @@ class _HomePageView extends State<HomePageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: scaffoldKey,
         backgroundColor: Colors.white,
         drawer: SafeArea(
-          child:  Container(
+          child: SizedBox(
             width: 250,
             child: Drawer(
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.zero,
               ),
-              child: MainDrawer(callback: widget.callback,),
+              child: MainDrawer(
+                callback: widget.callback,
+              ),
             ),
           ),
         ),
         body: SafeArea(
-          child: const [
-            Schedule(),
-            Card(
-              margin: const EdgeInsets.all(16.0),
+          child: [
+            Schedule(
+              scaffoldKey: scaffoldKey,
+            ),
+            const Card(
+              margin: EdgeInsets.all(16.0),
               child: Center(child: Text('Hoat Dong')),
             ),
-            Card(
-              margin: const EdgeInsets.all(16.0),
+            const Card(
+              margin: EdgeInsets.all(16.0),
               child: Center(child: Text('Bao Thuc')),
             ),
-            Card(
-              margin: const EdgeInsets.all(16.0),
+            const Card(
+              margin: EdgeInsets.all(16.0),
               child: Center(child: Text('Thong Ke')),
             ),
             TaskHome()

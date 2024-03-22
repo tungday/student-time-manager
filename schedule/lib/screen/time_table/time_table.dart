@@ -6,14 +6,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schedule/component/app_colors.dart';
 import 'package:schedule/component/schedule_item.dart';
 
-class TimeTable extends StatefulWidget {
-  const TimeTable({Key? key}) : super(key: key);
+class ScheduleManage extends StatefulWidget {
+  const ScheduleManage({Key? key}) : super(key: key);
 
   @override
-  State<TimeTable> createState() => _TimeTableState();
+  State<ScheduleManage> createState() => _ScheduleManageState();
 }
 
-class _TimeTableState extends State<TimeTable> {
+class _ScheduleManageState extends State<ScheduleManage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -71,6 +71,7 @@ class _TimeTableState extends State<TimeTable> {
             timeIn: '08:00',
             timeOut: '10:00',
             isNow: true,
+            isAction: false,
           ),
           Padding(
             padding: EdgeInsets.only(bottom: 10, left: 10),

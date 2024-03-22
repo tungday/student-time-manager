@@ -4,7 +4,7 @@ import 'package:schedule/screen/task_manage/task_manage.dart';
 import 'package:schedule/screen/time_table/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:schedule/screen/time_table/time_tables_manage.dart';
+import 'package:schedule/screen/time_table/schedule_manage.dart';
 
 void main() async {
   runApp(const MyApp());

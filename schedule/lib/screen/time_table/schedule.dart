@@ -5,7 +5,10 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import "package:schedule/screen/time_table/time_table.dart";
 
 class Schedule extends StatefulWidget {
-  const Schedule({Key? key}) : super(key: key);
+  // const Schedule({Key? key}) : super(key: key);
+  Schedule({required this.scaffoldKey});
+
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   State<Schedule> createState() => _ScheduleState();
@@ -39,7 +42,8 @@ class _ScheduleState extends State<Schedule> with TickerProviderStateMixin {
                 children: [
                   const Padding(padding: EdgeInsets.only(left: 5)),
                   IconButton(
-                      onPressed: () => {},
+                      onPressed: () =>
+                          {widget.scaffoldKey.currentState!.openDrawer()},
                       icon: SvgPicture.asset(
                         "assets/user_ic.svg",
                         width: 35,
@@ -93,7 +97,7 @@ class _ScheduleState extends State<Schedule> with TickerProviderStateMixin {
             ),
             Expanded(
               child: TabBarView(controller: _tabController, children: const [
-                TimeTable(),
+                ScheduleManage(),
                 Card(
                   margin: const EdgeInsets.all(16.0),
                   child: Center(child: Text('SU KIEN HOC TAP')),

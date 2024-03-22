@@ -4,9 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:schedule/component/app_colors.dart';
+import 'package:schedule/component/schedule_item.dart';
+import 'package:schedule/models/schedule_info.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class WeekSelected extends StatefulWidget {
+
   final Function(DateTime)? func; // setState cho ngày đang chọn để thay đổi d/s công việc tại trang Quản lý công vệc
 
   const WeekSelected({
@@ -14,13 +17,16 @@ class WeekSelected extends StatefulWidget {
     this.func
   }) : super(key: key);
 
+  final Widget? child;
   @override
   State<WeekSelected> createState() => _WeekSelectedState();
 }
 
 class _WeekSelectedState extends State<WeekSelected> {
   DateTime _selectedDay = DateTime.now();
+  DateTime _focusDay = DateTime.now();
   CalendarFormat _calendarFormat = CalendarFormat.week;
+
   late final Function(DateTime) _func;
 
   @override
