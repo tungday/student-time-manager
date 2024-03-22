@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schedule/component/app_colors.dart';
+import 'package:schedule/screen/task_manage/class_list.dart';
 import 'package:schedule/screen/task_manage/work_list.dart';
 
 class TaskHome extends StatefulWidget {
@@ -72,10 +73,7 @@ class _TaskHomeState extends State<TaskHome> with TickerProviderStateMixin {
                 controller: _tabController,
                 children: const [
                   WorkList(),
-                  Card(
-                    margin: EdgeInsets.only(top: 24),
-                    child: Text("Danh sách lớp tín chỉ"),
-                  )
+                  ClassList()
                 ],
               ),
             )

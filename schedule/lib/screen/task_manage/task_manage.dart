@@ -46,39 +46,7 @@ class _TaskManageState extends State<TaskManage> {
         content: "Đăng nhập vào trang qldt của trường lúc 12h để đăng ký "
             "cải thiện môn ltm",
         dateCreated: "16/02/2024 10:02",
-      ),
-      const TaskItem(
-        isComplete: true,
-        priority: "Cao",
-        title: "Đăng ký cải thiện một số môn trong hè",
-        content: "Đăng nhập vào trang qldt của trường lúc 12h để đăng ký "
-            "cải thiện môn ltm",
-        dateCreated: "16/02/2024 10:02",
-      ),
-      const TaskItem(
-        isComplete: true,
-        priority: "Cao",
-        title: "Đăng ký cải thiện một số môn trong hè",
-        content: "Đăng nhập vào trang qldt của trường lúc 12h để đăng ký "
-            "cải thiện môn ltm",
-        dateCreated: "16/02/2024 10:02",
-      ),
-      const TaskItem(
-        isComplete: true,
-        priority: "Cao",
-        title: "Đăng ký cải thiện một số môn trong hè",
-        content: "Đăng nhập vào trang qldt của trường lúc 12h để đăng ký "
-            "cải thiện môn ltm",
-        dateCreated: "16/02/2024 10:02",
-      ),
-      const TaskItem(
-        isComplete: true,
-        priority: "Cao",
-        title: "Đăng ký cải thiện một số môn trong hè",
-        content: "Đăng nhập vào trang qldt của trường lúc 12h để đăng ký "
-            "cải thiện môn ltm",
-        dateCreated: "16/02/2024 10:02",
-      ),
+      )
     ];
     super.initState();
   }
