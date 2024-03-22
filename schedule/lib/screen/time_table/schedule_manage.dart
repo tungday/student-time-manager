@@ -43,6 +43,21 @@ class _TimeTableManageState extends State<TimeTableManage> {
   List<ScheduleInfo> _getEventForDay(DateTime day) {
     return _schedules[day] ?? [];
   }
+  void onDeleteItemSchedule(int index){
+    setState(() {
+      print("===BEFORE: ${_selectedEvent}");
+      _schedules.update(_selectedDay, (value) {
+        final sc = value.removeAt(index);
+        return value;
+      });
+      _selectedEvent.value = _getEventForDay(_selectedDay);
+      print("===AFTER: ${_selectedEvent}");
+    });
+
+  }
+  void onUpdateItemSchedule(){
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -175,6 +190,9 @@ class _TimeTableManageState extends State<TimeTableManage> {
                                     isNow: false,
                                     isAction: true,
                                     isPractice: true,
+                                    onDeleteItemSchedule: (){
+                                      onDeleteItemSchedule(index);
+                                    }
                                   );
                                 });
                           }),

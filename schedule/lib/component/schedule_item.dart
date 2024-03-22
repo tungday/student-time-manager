@@ -14,6 +14,7 @@ class ScheduleItem extends StatelessWidget {
   final bool? isNow;
   final bool? isPractice;
   final bool? isAction;
+  final Function? onDeleteItemSchedule;
 
   const ScheduleItem(
       {super.key,
@@ -26,7 +27,8 @@ class ScheduleItem extends StatelessWidget {
       required this.timeOut,
       this.isNow,
       this.isPractice,
-      this.isAction});
+      this.isAction,
+      this.onDeleteItemSchedule});
 
   @override
   Widget build(BuildContext context) {
@@ -140,10 +142,14 @@ class ScheduleItem extends StatelessWidget {
                       PopupMenuItem(
                         child: Text("Chinh Sua"),
                         height: 30,
+
                       ),
                       PopupMenuItem(
                         child: Text("Xoa"),
                         height: 30,
+                        onTap: (){
+                          onDeleteItemSchedule!;
+                        },
                       ),
                     ],
                     color: Colors.white,
