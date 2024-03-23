@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:schedule/component/app_colors.dart';
+import 'package:schedule/screen/task_manage/class_info.dart';
 
 class CreditCourse extends StatelessWidget {
   final int credit;
@@ -21,7 +22,15 @@ class CreditCourse extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("Tap Credit Course");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ClassInfo(
+            course: course,
+            teacher: teacher,
+            classroom: classroom,
+            progress: progress,
+          ))
+        );
       },
       child: Container(
         padding: const EdgeInsets.only(left: 12, top: 8, right: 12, bottom: 8),
