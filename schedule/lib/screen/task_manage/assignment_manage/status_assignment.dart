@@ -1,0 +1,1 @@
+enum StatusAssignment { assigned, incomplete, complete }

@@ -10,11 +10,10 @@ import 'package:table_calendar/table_calendar.dart';
 
 class WeekSelected extends StatefulWidget {
   final Function(DateTime)? func; // setState cho ngày đang chọn để thay đổi d/s công việc tại trang Quản lý công vệc
-  final Widget? child;
 
   const WeekSelected({
     super.key,
-    this.func, this.child
+    this.func,
   });
 
   @override

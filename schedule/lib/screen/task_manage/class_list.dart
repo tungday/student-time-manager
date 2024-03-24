@@ -21,6 +21,8 @@ class _ClassListState extends State<ClassList> {
         credit: 3,
         course: "Đảm bảo chất lượng phần mềm",
         progress: 38,
+        teacher: "Đào Ngọc Phong",
+        classroom: "Phòng 302-A3",
       ),
       const CreditCourse(
         credit: 3,
