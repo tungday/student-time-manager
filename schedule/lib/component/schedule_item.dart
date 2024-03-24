@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:schedule/component/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:schedule/screen/time_table/add_new_schedule.dart';
 
 class ScheduleItem extends StatelessWidget {
-  final String text;
+  final String day;
   final String subject;
   final String teacher;
   final String room;
@@ -14,10 +15,11 @@ class ScheduleItem extends StatelessWidget {
   final bool? isNow;
   final bool? isPractice;
   final bool? isAction;
-
+  final VoidCallback? onDeleteItemSchedule;
+  final VoidCallback? updateSchedule;
   const ScheduleItem(
       {super.key,
-      required this.text,
+      required this.day,
       required this.subject,
       required this.teacher,
       required this.room,
@@ -26,7 +28,9 @@ class ScheduleItem extends StatelessWidget {
       required this.timeOut,
       this.isNow,
       this.isPractice,
-      this.isAction});
+      this.isAction,
+      this.onDeleteItemSchedule,
+      this.updateSchedule});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +58,7 @@ class ScheduleItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        text,
+                        day,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: fontSize.toDouble() + 2,
@@ -140,10 +144,12 @@ class ScheduleItem extends StatelessWidget {
                       PopupMenuItem(
                         child: Text("Chinh Sua"),
                         height: 30,
+                        onTap: updateSchedule
                       ),
                       PopupMenuItem(
                         child: Text("Xoa"),
                         height: 30,
+                        onTap: onDeleteItemSchedule,
                       ),
                     ],
                     color: Colors.white,
