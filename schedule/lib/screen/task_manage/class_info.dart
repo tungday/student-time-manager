@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:schedule/component/app_colors.dart';
+import 'package:schedule/screen/task_manage/assignment_manage/course_assignment.dart';
 
 class ClassInfo extends StatelessWidget {
   final String course;
@@ -226,7 +227,14 @@ class ClassInfo extends StatelessWidget {
               {
                 "label": "Nhiệm vụ môn học",
                 "icon": "assets/assignment_ic.svg",
-                "tapHandle": () {}
+                "tapHandle": () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CourseAssignment()
+                    )
+                  );
+                }
               },
             ]),
           ],

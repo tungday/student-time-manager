@@ -2,55 +2,60 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:schedule/component/app_colors.dart';
-import 'package:schedule/component/calendar/week_selected.dart';
 import 'package:schedule/component/confirmation_dialog.dart';
+import 'package:schedule/component/datetime_picker.dart';
 
-class TaskHandler extends StatefulWidget {
+class AssignmentForm extends StatefulWidget {
   final String typeHandle;
   final bool isComplete;
-  final String priority;
   final String? title;
   final String? content;
+  final String? dateDeadline;
+  final String? timeDeadline;
   final String? timeCreated;
 
-  const TaskHandler({
-    this.typeHandle = "Thêm công việc",
+  const AssignmentForm({
+    this.typeHandle = "Thêm nhiệm vụ môn học",
     this.isComplete = false,
-    this.priority = "Cao",
     this.title,
     this.content,
+    this.dateDeadline,
+    this.timeDeadline,
     this.timeCreated,
     super.key
   });
 
   @override
   State<StatefulWidget> createState() {
-    return _TaskHandlerSate();
+    return _AssignmentFormState();
   }
-
+  
 }
 
-class _TaskHandlerSate extends State<TaskHandler> {
+class _AssignmentFormState extends State<AssignmentForm> {
+  late String _typeHandle;
   late bool _isComplete;
-  late String _priority;
   late String _title;
   late String _content;
+  late String? _dateDeadline;
+  late String? _timeDeadline;
   late String _timeCreated;
   late num _characters;
-  final List<String> priorities = ["Cao", "Trung bình", "Thấp"];
   late final TextEditingController _titleController;
   late final TextEditingController _contentController;
   late GlobalKey<FormState> _formKey;
 
   @override
   void initState() {
+    _typeHandle = widget.typeHandle;
     _isComplete = widget.isComplete;
-    _priority = widget.priority;
     _title = widget.title ?? "";
     _content = widget.content ?? "";
+    _characters = _content.length;
     _timeCreated = widget.timeCreated ??
         DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now()).toString();
-    _characters = _content.length;
+    _dateDeadline = widget.dateDeadline;
+    _timeDeadline = widget.timeDeadline;
     _titleController = TextEditingController(text: _title);
     _contentController = TextEditingController(text: _content);
     _formKey = GlobalKey<FormState>();
@@ -89,59 +94,19 @@ class _TaskHandlerSate extends State<TaskHandler> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: const EdgeInsets.only(bottom: 12),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border(
-                          bottom: BorderSide(
-                              color: Colors.grey.withOpacity(0.5),
-                              width: 0.5
-                          )
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            blurRadius: 1.0,
-                            offset: const Offset(0.0, 0.75)
-                        )
-                      ]
-                  ),
-                  child: const WeekSelected(),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(left: 16, right: 16),
+                  padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
                   child: Row(
                     children: [
                       const Text(
-                        "Mức ưu tiên:",
+                        "Deadline:",
                         style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                            borderRadius: BorderRadius.circular(8),
-                            alignment: AlignmentDirectional.center,
-                            padding: const EdgeInsets.only(left: 4),
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 13,
-                                color: Colors.black
-                            ),
-                            items: priorities.map<DropdownMenuItem<String>>(
-                                    (priority) => DropdownMenuItem(
-                                  value: priority,
-                                  child: Text(priority),
-                                )
-                            ).toList(),
-                            value: _priority,
-                            onChanged: (priority) {
-                              setState(() {
-                                _priority = priority ?? "Cao";
-                              });
-                            }
-                        ),
+                      DateTimePicker(
+                        date: _dateDeadline,
+                        time: _timeDeadline,
                       ),
                       const Spacer(),
                       GestureDetector(
@@ -149,7 +114,7 @@ class _TaskHandlerSate extends State<TaskHandler> {
                           ConfirmationDialog.showConfirmationDialog(
                             context,
                             title: "Xác nhận hoàn thành",
-                            content: "Bạn xác nhận đã hoàn thành công việc này?",
+                            content: "Bạn xác nhận đã hoàn thành nhiệm vụ này?",
                             cancelLabel: "Hủy",
                             confirmLabel: "Xác nhận"
                           ).then((confirm) {
@@ -170,19 +135,20 @@ class _TaskHandlerSate extends State<TaskHandler> {
                       GestureDetector(
                         onTap: () {
                           ConfirmationDialog.showConfirmationDialog(
-                              context,
-                              title: "Xác nhận xóa",
-                              content: "Bạn có chắc muốn xóa công việc này?",
-                              cancelLabel: "Hủy",
-                              confirmLabel: "Xóa"
+                            context,
+                            title: "Xác nhận xóa",
+                            content: "Bạn có chắc muốn xóa nhiệm vụ này?",
+                            cancelLabel: "Hủy",
+                            confirmLabel: "Xóa"
                           )
-                              .then((confirm) {
-                            if (confirm == true) {
-                              Navigator.pop(context);
-                            }
-                          });
+                            .then((confirm) {
+                              if (confirm == true) {
+                                Navigator.pop(context);
+                              }
+                            });
                         },
-                        child: SvgPicture.asset("assets/delete_ic.svg",
+                        child: SvgPicture.asset(
+                          "assets/delete_ic.svg",
                           width: 19,
                           height: 19,
                           color: Colors.grey,
@@ -216,7 +182,7 @@ class _TaskHandlerSate extends State<TaskHandler> {
                     },
                     validator: (title) {
                       if (title == null || title.isEmpty) {
-                        return "Vui lòng nhập tiêu đề công việc";
+                        return "Vui lòng nhập tiêu đề nhiệm vụ";
                       }
                       return null;
                     },
@@ -261,7 +227,7 @@ class _TaskHandlerSate extends State<TaskHandler> {
                     },
                     validator: (title) {
                       if (title == null || title.isEmpty) {
-                        return "Vui lòng nhập nội dung công việc";
+                        return "Vui lòng nhập nội dung nhiệm vụ";
                       }
                       return null;
                     },
@@ -289,5 +255,5 @@ class _TaskHandlerSate extends State<TaskHandler> {
       ),
     );
   }
-
+  
 }

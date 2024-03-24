@@ -41,6 +41,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   popover: ^0.2.8+2
+  flutter_datetime_picker_plus: ^2.1.0
 
 dev_dependencies:
   flutter_test:
