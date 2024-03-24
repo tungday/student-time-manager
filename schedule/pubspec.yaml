@@ -41,6 +41,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   popover: ^0.2.8+2
+  flex_color_picker: ^3.4.1
 
 dev_dependencies:
   flutter_test:
