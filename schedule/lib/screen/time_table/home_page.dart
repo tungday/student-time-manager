@@ -8,6 +8,8 @@ import 'package:schedule/screen/navigation_menu/navigation_menu.dart';
 import 'package:schedule/screen/task_manage/task_home.dart';
 import 'package:schedule/screen/time_table/schedule.dart';
 
+import '../activity_manage/activity_manage.dart';
+
 class HomePage extends StatelessWidget {
   HomePage({required this.callback});
 
@@ -76,10 +78,7 @@ class _HomePageView extends State<HomePageView> {
             Schedule(
               scaffoldKey: scaffoldKey,
             ),
-            const Card(
-              margin: EdgeInsets.all(16.0),
-              child: Center(child: Text('Hoat Dong')),
-            ),
+            ActivityManage(),
             AlertHome(),
             const Card(
               margin: EdgeInsets.all(16.0),

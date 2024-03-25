@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:schedule/screen/activity_manage/activity_manage.dart';
+import 'package:schedule/screen/activity_manage/time_activity_manage.dart';
 
 import 'package:schedule/screen/alert/alarm_bloc.dart';
 import 'package:schedule/screen/alert/alert_home.dart';
@@ -31,9 +33,12 @@ class MyApp extends StatelessWidget {
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         locale: Locale('vi', ''),
-        home: HomePage(callback: () {  },),
+        home: HomePage(
+          callback: () {},
+        ),
         routes: {
           '/schedule_manage': (context) => TimeTableManage(),
+          '/activity_manage': (context) => ActivityTableManage(),
           '/task_manage': (context) => const TaskManage(),
           '/alert_home': (context) => const AlertHome(),
         },
