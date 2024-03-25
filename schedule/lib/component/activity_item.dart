@@ -1,36 +1,36 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:schedule/component/app_colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:schedule/screen/time_table/add_new_schedule.dart';
 
-class ScheduleItem extends StatelessWidget {
+class ActivityItem extends StatelessWidget {
   final String day;
   final String subject;
-  final String teacher;
-  final String room;
+  final String note;
   final int fontSize;
   final String timeIn;
   final String timeOut;
   final bool? isNow;
   final bool? isPractice;
   final bool? isAction;
-  final VoidCallback? onDeleteItemSchedule;
-  final VoidCallback? updateSchedule;
-  const ScheduleItem(
-      {super.key,
-      required this.day,
-      required this.subject,
-      required this.teacher,
-      required this.room,
-      required this.fontSize,
-      required this.timeIn,
-      required this.timeOut,
-      this.isNow,
-      this.isPractice,
-      this.isAction,
-      this.onDeleteItemSchedule,
-      this.updateSchedule});
+  final VoidCallback? onDeleteItemActivity;
+  final VoidCallback? updateActivity;
+  const ActivityItem({
+    super.key,
+    required this.day,
+    required this.subject,
+    required this.note,
+    required this.fontSize,
+    required this.timeIn,
+    required this.timeOut,
+    this.isNow,
+    this.isPractice,
+    this.isAction,
+    this.onDeleteItemActivity,
+    this.updateActivity,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -93,8 +93,10 @@ class ScheduleItem extends StatelessWidget {
                     ],
                   ),
                 )),
-             VerticalDivider(
-              color: isPractice ?? false ? AppColor.redColor : AppColor.bluePrimaryColor1,
+            VerticalDivider(
+              color: isPractice ?? false
+                  ? AppColor.redColor
+                  : AppColor.bluePrimaryColor1,
               width: 2,
               thickness: 2,
             ),
@@ -105,35 +107,36 @@ class ScheduleItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      subject,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        color: isPractice ?? false
-                            ? AppColor.redColor
-                            : AppColor.bluePrimaryColor1,
+                    Expanded(
+                      child: Center(
+                        widthFactor: 1,
+                        child: Text(
+                          subject,
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w700,
+                            color: isPractice ?? false
+                                ? AppColor.redColor
+                                : AppColor.bluePrimaryColor1,
+                          ),
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 2),
-                    Text(
-                      "${AppLocalizations.of(context)!.teacher}: ${(teacher)}",
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: isPractice ?? false
-                            ? AppColor.redColor
-                            : AppColor.bluePrimaryColor1,
+                    Visibility(
+                      visible: note != "",
+                      child: Expanded(
+                        flex: 1,
+                        child: Text(
+                          note == "" ? "" : "Ghi chú: ${(note)}",
+                          style: TextStyle(
+                            fontSize: 13,
+                            color: isPractice ?? false
+                                ? AppColor.redColor
+                                : AppColor.bluePrimaryColor1,
+                          ),
+                        ),
                       ),
-                    ),
-                    Text(
-                      "${AppLocalizations.of(context)!.classroom}: ${(room)}",
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: isPractice ?? false
-                            ? AppColor.redColor
-                            : AppColor.bluePrimaryColor1,
-                      ),
-                    ),
+                    )
                   ],
                 ),
               ),
@@ -142,14 +145,13 @@ class ScheduleItem extends StatelessWidget {
                 ? PopupMenuButton(
                     itemBuilder: (context) => [
                       PopupMenuItem(
-                        child: Text("Chinh Sua"),
-                        height: 30,
-                        onTap: updateSchedule
-                      ),
+                          child: Text("Chỉnh sửa"),
+                          height: 30,
+                          onTap: updateActivity),
                       PopupMenuItem(
-                        child: Text("Xoa"),
+                        child: Text("Xoá"),
                         height: 30,
-                        onTap: onDeleteItemSchedule,
+                        onTap: onDeleteItemActivity,
                       ),
                     ],
                     color: Colors.white,

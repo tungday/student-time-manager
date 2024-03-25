@@ -63,7 +63,7 @@ class _ScheduleManageState extends State<ScheduleManage> {
             ),
           ),
           const ScheduleItem(
-            text: "15/03",
+            day: "15/03",
             subject: "Lap Trinh HDT",
             teacher: "Nguyen Hoang Anh",
             room: "203-A3",
@@ -91,7 +91,7 @@ class _ScheduleManageState extends State<ScheduleManage> {
             shrinkWrap: true,
             itemCount: 10,
             itemBuilder: (context, index) => const ScheduleItem(
-              text: "15/03",
+              day: "15/03",
               subject: "Lap Trinh HDT",
               teacher: "Nguyen Hoang Anh",
               room: "203-A3",

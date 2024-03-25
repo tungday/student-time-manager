@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:schedule/component/app_colors.dart';
 import 'package:schedule/component/schedule_item.dart';
+import 'package:schedule/screen/alert/alert_home.dart';
 import 'package:schedule/screen/drawer_nav/main_drawer.dart';
 import 'package:schedule/screen/navigation_menu/navigation_menu.dart';
 import 'package:schedule/screen/task_manage/task_home.dart';
@@ -78,10 +79,7 @@ class _HomePageView extends State<HomePageView> {
               scaffoldKey: scaffoldKey,
             ),
             ActivityManage(),
-            const Card(
-              margin: EdgeInsets.all(16.0),
-              child: Center(child: Text('Bao Thuc')),
-            ),
+            AlertHome(),
             const Card(
               margin: EdgeInsets.all(16.0),
               child: Center(child: Text('Thong Ke')),

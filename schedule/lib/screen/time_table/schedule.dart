@@ -2,6 +2,7 @@ import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";
 import "package:schedule/component/app_colors.dart";
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import "package:schedule/event_study/study_event.dart";
 import "package:schedule/screen/time_table/time_table.dart";
 
 class Schedule extends StatefulWidget {
@@ -98,10 +99,7 @@ class _ScheduleState extends State<Schedule> with TickerProviderStateMixin {
             Expanded(
               child: TabBarView(controller: _tabController, children: const [
                 ScheduleManage(),
-                Card(
-                  margin: const EdgeInsets.all(16.0),
-                  child: Center(child: Text('SU KIEN HOC TAP')),
-                ),
+                StudyEvent()
               ]),
             )
           ],

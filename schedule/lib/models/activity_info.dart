@@ -1,19 +1,16 @@
-class ScheduleInfo {
-  ScheduleInfo(
+class ActivityInfo {
+  ActivityInfo(
       {String? subject,
-      String? teacher,
-      String? room,
+      String? note,
       String? timeIn, String? timeOut, String? activity})
       : _subject = subject,
-        _teacher = teacher,
-        _room = room,
+        _note = note,
         _timeIn = timeIn,
         _timeOut = timeOut,
   _activity = activity
   ;
   String? _subject;
-  String? _teacher;
-  String? _room;
+  String? _note;
   String? _activity;
   String? _timeIn;
   String? _timeOut;
@@ -30,13 +27,10 @@ class ScheduleInfo {
   }
 
 
-  set teacher(String value) {
-    _teacher = value;
+  set note(String value) {
+    _note = value;
   }
 
-  set room(String value) {
-    _room = value;
-  }
 
   String get timeIn => _timeIn!;
 
@@ -46,9 +40,8 @@ class ScheduleInfo {
 
   String get subject => _subject!;
 
-  String get teacher => _teacher!;
+  String get note => _note!;
 
-  String get room => _room!;
 
   String get timeOut => _timeOut!;
 
