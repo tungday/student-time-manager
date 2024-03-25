@@ -3,6 +3,8 @@ import 'package:schedule/component/alert_container.dart';
 import 'package:schedule/component/app_colors.dart';
 import 'package:schedule/screen/alert/alert_add.dart';
 
+import 'noti.dart';
+
 class AlertHome extends StatefulWidget {
   const AlertHome({Key? key}) : super(key: key);
 
@@ -18,16 +20,27 @@ class _AlertHomeState extends State<AlertHome> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          actions: [
+            IconButton(
+              onPressed: () {
+                // Chuyển sang màn hình Noti và truyền danh sách alarms
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Noti(alarms: alarms)),
+                );
+              },
+              icon: Icon(Icons.notifications),
+            ),
+          ],
           backgroundColor: AppColor.bluePrimaryColor1,
           foregroundColor: Colors.white,
-          title: const Center(
-            child: Text(
-              "Báo Thức",
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 22,
-                height: 1,
-              ),
+          centerTitle: true,
+          title: Text(
+            "Báo Thức",
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: 22,
+              height: 1,
             ),
           ),
         ),
@@ -57,9 +70,9 @@ class _AlertHomeState extends State<AlertHome> {
                         MaterialPageRoute(builder: (context) => AddAlarm()),
                       );
 
-                      // Check if result is not null
+                      // Kiểm tra nếu kết quả không null
                       if (result != null) {
-                        // Add the received alarm data to the list
+                        // Thêm dữ liệu báo thức nhận được vào danh sách
                         setState(() {
                           alarms.add(result);
                         });
