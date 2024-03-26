@@ -21,8 +21,25 @@ class AddAlarm extends StatelessWidget {
   }
 }
 
-class _AddAlarmScreen extends StatelessWidget {
+class _AddAlarmScreen extends StatefulWidget {
+  @override
+  State<_AddAlarmScreen> createState() => _AddAlarmScreenState();
+}
+
+class _AddAlarmScreenState extends State<_AddAlarmScreen> {
+  late String? datetime;
+
   final TextEditingController controller = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    DateFormat dateFormat =
+    DateFormat('dd/MM/yyyy  |  HH:mm');
+    datetime = dateFormat.format(DateTime.now()).toString();
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +56,7 @@ class _AddAlarmScreen extends StatelessWidget {
       ),
       body: BlocBuilder<AddAlarmBloc, AddAlarmState>(
         builder: (context, state) {
-          String? datetime;
-          bool repeat = false;
-          DateTime? notificationTime;
-          String? name = "none";
-          int? milliseconds;
+
 
           return Column(
             mainAxisAlignment: MainAxisAlignment.start,
